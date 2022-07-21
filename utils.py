@@ -18,11 +18,12 @@ def replace_halogen(string):
     string = cl.sub('L', string)
     return string
 # Create necessary variables, lengths, and target
-def make_variables(lines, properties,letters):
+def make_variables(lines, properties, letters):
     sequence_and_length = [line2voc_arr(line,letters) for line in lines]
     vectorized_seqs = [sl[0] for sl in sequence_and_length]
     seq_lengths = torch.LongTensor([sl[1] for sl in sequence_and_length])
     return pad_sequences(vectorized_seqs, seq_lengths, properties)
+
 def make_variables_seq(lines,letters):
     sequence_and_length = [line2voc_arr(line,letters) for line in lines]
     vectorized_seqs = [sl[0] for sl in sequence_and_length]

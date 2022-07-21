@@ -130,7 +130,7 @@ def test(testArgs):
     all_pred = np.array([])
     all_target = np.array([])
     with torch.no_grad():
-        for lines, contactmap,properties in tqdm(test_loader):
+        for lines, contactmap,properties in (test_loader):
             input, seq_lengths, y = make_variables(lines, properties,smiles_letters)
             attention_model.hidden_state = attention_model.init_hidden()
             contactmap = contactmap.cuda()
@@ -162,3 +162,20 @@ def test(testArgs):
     roce4 = round(getROCE(all_pred,all_target,5),2)
     print("roce0.5 =",roce1,"  roce1.0 =",roce2,"  roce2.0 =",roce3,"  roce5.0 =",roce4)
     return testAcc,testRecall,testPrecision,testAuc,testLoss,all_pred,all_target,roce1,roce2,roce3,roce4
+
+
+
+def test2(testArgs):
+    test_dataset = ProDataset2(testArgs['smiles'], testArgs['contact_map'])
+    test_loader = DataLoader(dataset=test_dataset,batch_size=1, shuffle=False,drop_last = True)
+    attention_model = testArgs['model']
+    all_pred = np.array([])
+    with torch.no_grad():
+        for lines, contactmap in test_loader:
+            input, _ = make_variables_seq(lines, smiles_letters)
+            attention_model.hidden_state = attention_model.init_hidden()
+            contactmap = contactmap.cuda()
+            y_pred, att = attention_model(input,contactmap)
+            all_pred=np.concatenate((all_pred,y_pred.data.cpu().squeeze(1).numpy()),axis = 0)
+
+    return all_pred

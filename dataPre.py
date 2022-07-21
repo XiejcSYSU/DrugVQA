@@ -27,6 +27,21 @@ class ProDataset(Dataset):
 
     def get_property_id(self, property):
         return self.property_list.index(property)
+
+class ProDataset2(Dataset):
+    def __init__(self, smiles, protein):
+        self.smiles = smiles
+        self.protein = protein
+        self.len = len(smiles)
+
+    def __getitem__(self, index):
+        smile, protein = self.smiles[index], self.protein
+        return smile, protein
+
+    def __len__(self):
+        return self.len
+
+
     
 testFoldPath = './data/DUDE/dataPre/DUDE-foldTest3'
 trainFoldPath = './data/DUDE/dataPre/DUDE-foldTrain3'
@@ -77,7 +92,7 @@ modelArgs['dense_hid'] = 100
 modelArgs['task_type'] = 0
 modelArgs['n_classes'] = 1
 
-print('train args...')
+# print('train args...')
 
 trainArgs = {}
 # trainArgs['model'] = DrugVQA(modelArgs,block = ResidualBlock).cuda()
@@ -96,4 +111,4 @@ trainArgs['clip'] = True
 trainArgs['doSave'] = True
 trainArgs['saveNamePre'] = 'DUDE30Res-fold3-'
 
-print('train args over...')
+# print('train args over...')

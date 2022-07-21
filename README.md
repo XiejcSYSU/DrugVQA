@@ -19,5 +19,14 @@ Run [test.py](./test.py)
 To run the training procedure,
 
 1. Install [requirements.txt](./requirements.txt) to set up the envirnoment.
-2. Run the [test.py](./test.py) to test the model with input file.
-``python test.py --input ./data/DUDE/dataPre/DUDE-foldTest3``
+2. Run the [test.py](./test.py) to test the model.
+
+``python test.py --protein input1 --ligand input2``
+
++ input1: protein sequence or protein contact map file (file should be named like '*_contact_map')
++ input2: ligand smiles list, separated by commos
+
+expample:
+``python test.py --protein 'IMGSSVYITVELAIAVLAILGNVLVCWAVWLNSNLQNVTNYFVVSLAAADIAVGVLAIPFAITISTGFCAACHGCLFIACFVLVLTQSSIFSLLAIAIDRYIAIRIPLRYNGLVTGTRAKGIIAICWVLSFAIGLTPMLGWNNCGQSQGCGEGQVACLFEDVVPMNYMVYFNFFACVLVPLLLMLGVYLRIFLAARRQLNIFEMLRIDEGLRLKIYKDTEGYYTIGIGHLLTKSPSLNAAKSELDKAIGRNTNGVITKDEAEKLFNQDVDAAVRGILRNAKLKPVYDSLDAVRRAALINMVFQMGETGVAGFTNSLRMLQQKRWDEAAVNLAKSRWYNQTPNRAKRVITTFRTGTWDAYRSTLQKEVHAAKSLAIIVGLFALCWLPLHIINCFTFFCPDCSHAPLWLMYLAIVLSHTNSVVNPFIYAYRIREFRQTFRKIIRSHVLRQ' --ligand 'C#CCOc3nc(c1ccccc1)nc4sc2CCCc2c34,OC[C@H]3OC(n1cnc2c(NCCS(O)(=O)=O)ncnc12)[C@H](O)[C@@H]3O'``
+
+``python test.py --protein ./3emlA_contact_map --ligand 'C#CCOc3nc(c1ccccc1)nc4sc2CCCc2c34,OC[C@H]3OC(n1cnc2c(NCCS(O)(=O)=O)ncnc12)[C@H](O)[C@@H]3O'``
