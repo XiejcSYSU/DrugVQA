@@ -16,7 +16,6 @@ All default arguments for demo are provided in the [dataPre.py](./dataPre.py).
 Run [test.py](./test.py)
 
 ## Usage
-To run the training procedure,
 
 1. Install [requirements.txt](./requirements.txt) to set up the envirnoment.
 2. Run the [test.py](./test.py) to test the model.
